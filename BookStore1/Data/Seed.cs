@@ -24,7 +24,6 @@ namespace BookStore1.Data
                         {
                             Title ="Lalka",
                             Author = "Bolesław Prud",
-
                             Price = 50
                         },
                          new Book()
@@ -33,7 +32,7 @@ namespace BookStore1.Data
                             Author = "Adam Mickiewicz",
                             Price = 50
                         },
-                    }); ;
+                    });
                     context.SaveChanges();
                 }
                 

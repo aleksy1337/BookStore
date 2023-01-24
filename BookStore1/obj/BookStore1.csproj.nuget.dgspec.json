@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Aleksy\\source\\repos\\BookStore2\\BookStore1\\BookStore1\\BookStore1.csproj": {}
+    "C:\\Users\\Aleksy\\source\\repos\\BookStore\\BookStore\\BookStore1\\BookStore1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Aleksy\\source\\repos\\BookStore2\\BookStore1\\BookStore1\\BookStore1.csproj": {
+    "C:\\Users\\Aleksy\\source\\repos\\BookStore\\BookStore\\BookStore1\\BookStore1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Aleksy\\source\\repos\\BookStore2\\BookStore1\\BookStore1\\BookStore1.csproj",
+        "projectUniqueName": "C:\\Users\\Aleksy\\source\\repos\\BookStore\\BookStore\\BookStore1\\BookStore1.csproj",
         "projectName": "BookStore1",
-        "projectPath": "C:\\Users\\Aleksy\\source\\repos\\BookStore2\\BookStore1\\BookStore1\\BookStore1.csproj",
+        "projectPath": "C:\\Users\\Aleksy\\source\\repos\\BookStore\\BookStore\\BookStore1\\BookStore1.csproj",
         "packagesPath": "C:\\Users\\Aleksy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Aleksy\\source\\repos\\BookStore2\\BookStore1\\BookStore1\\obj\\",
+        "outputPath": "C:\\Users\\Aleksy\\source\\repos\\BookStore\\BookStore\\BookStore1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
