@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230123150754_innit")]
+    [Migration("20230125170118_innit")]
     partial class innit
     {
         /// <inheritdoc />
@@ -34,6 +34,10 @@ namespace BookStore1.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
                     b.Property<string>("Author")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Price")

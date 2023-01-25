@@ -10,6 +10,7 @@ namespace BookStore1.Models
         public string? Author { get; set; }
 
         public decimal? Price { get; set; }
+        public string Image { get; set; }   
 
     }
 }

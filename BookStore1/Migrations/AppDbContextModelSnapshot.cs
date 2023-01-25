@@ -33,6 +33,10 @@ namespace BookStore1.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 

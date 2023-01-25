@@ -16,5 +16,11 @@ namespace BookStore1.Controllers
             List<Book> books = _context.Books.ToList();
             return View(books);
         }
+        public IActionResult Detail (int id)
+        {
+            Book book = _context.Books.FirstOrDefault(c=> c.ID == id);
+            return View(book);
+
+        }
     }
 }

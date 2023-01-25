@@ -19,7 +19,8 @@ namespace BookStore1.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
