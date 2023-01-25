@@ -1,26 +1,35 @@
 ﻿using BookStore1.Data;
+using BookStore1.Interfaces;
 using BookStore1.Models;
+using BookStore1.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore1.Controllers
 {
+
     public class BookController : Controller
     {
-        private readonly AppDbContext _context;
-        public BookController(AppDbContext context)
+        private readonly IBookRepository _bookRepository;
+        public BookController(AppDbContext context, IBookRepository BookRepository)
         {
-            _context = context;
+            _bookRepository = BookRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Book> books = _context.Books.ToList();
+            IEnumerable<Book> books = await _bookRepository.GetAll();
             return View(books);
         }
-        public IActionResult Detail (int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            Book book = _context.Books.FirstOrDefault(c=> c.ID == id);
+            Book book = await _bookRepository.GetByIdAsync(id);
             return View(book);
 
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
     }
 }

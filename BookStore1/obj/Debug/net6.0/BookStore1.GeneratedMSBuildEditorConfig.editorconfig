@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Aleksy\source\repos\BookStore\BookStore\BookStore1
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Aleksy/source/repos/BookStore/BookStore/BookStore1/Views/Book/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Aleksy/source/repos/BookStore/BookStore/BookStore1/Views/Book/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
