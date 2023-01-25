@@ -1,4 +1,5 @@
-﻿using BookStore1.Data;
+﻿using AspNetCore;
+using BookStore1.Data;
 using BookStore1.Interfaces;
 using BookStore1.Models;
 using BookStore1.Repository;
@@ -31,5 +32,15 @@ namespace BookStore1.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Create(Book book)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(book);
+            }
+            _bookRepository.Add(book);
+            return RedirectToAction("Index");
+        }
     }
 }
