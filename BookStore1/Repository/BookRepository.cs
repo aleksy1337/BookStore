@@ -36,6 +36,10 @@ namespace BookStore1.Repository
         {
             return await _context.Books.FirstOrDefaultAsync(i => i.ID == id);
         }
+        public async Task<Book> GetByIdAsyncNoTracking(int id)
+        {
+            return await _context.Books.AsNoTracking().FirstOrDefaultAsync(i => i.ID == id);
+        }
         public async Task<IEnumerable<Book>> GetBook(string Title)
         {
             return await _context.Books.Where(b => b.Title.Contains(Title)).ToListAsync();
@@ -49,7 +53,8 @@ namespace BookStore1.Repository
 
         public bool Update(Book book)
         {
-            throw new NotImplementedException();
+            _context.Update(book);
+            return Save();  
         }
     }
 }

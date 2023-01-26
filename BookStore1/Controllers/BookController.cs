@@ -1,19 +1,28 @@
-﻿using AspNetCore;
+﻿
 using BookStore1.Data;
 using BookStore1.Interfaces;
 using BookStore1.Models;
 using BookStore1.Repository;
+using BookStore1.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace BookStore1.Controllers
 {
 
     public class BookController : Controller
     {
+
         private readonly IBookRepository _bookRepository;
-        public BookController(AppDbContext context, IBookRepository BookRepository)
+        private readonly IPhotoService _photoService;
+        public BookController(AppDbContext context, IBookRepository BookRepository, IPhotoService photoService)
         {
             _bookRepository = BookRepository;
+            _photoService = photoService;
+
+
         }
         public async Task<IActionResult> Index()
         {
@@ -32,15 +41,83 @@ namespace BookStore1.Controllers
             return View();
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> Create(Book book)
+        public async Task<IActionResult> Create(CreateBookViewModel bookVM)
         {
-            if(!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(book);
+                var result = await _photoService.AddPhotoAsync(bookVM.Image);
+                var book = new Book
+                {
+                    Title = bookVM.Title,
+                    Author = bookVM.Author,
+                    Price = bookVM.Price,
+                    Image = result.Url.ToString()
+
+                };
+                _bookRepository.Add(book);
+                return RedirectToAction("Index");
             }
-            _bookRepository.Add(book);
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Photo upload failed");
+            }
+            return View(bookVM);
+
+
         }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var book = await _bookRepository.GetByIdAsync(id);
+            if (book == null) return View("Error");
+            var bookVM = new EditBookViewModel
+            {
+                Title = book.Title,
+                Author = book.Author,
+                Price = book.Price,
+                URL = book.Image,
+            };
+            return View(bookVM);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditBookViewModel bookVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit book");
+                return View("Edit", bookVM);
+            }
+            var Book = await _bookRepository.GetByIdAsyncNoTracking(id);
+            if (Book != null)
+            {
+                try
+                {
+                    await _photoService.DeletePhotoAsync(Book.Image);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Could not delete photo");
+                    return View(bookVM);
+                }
+                var photoResult = await _photoService.AddPhotoAsync(bookVM.Image);
+                var book = new Book
+                {
+                    ID = id,
+                    Title = bookVM.Title,
+                    Author = bookVM.Author,
+                    Price = bookVM.Price,
+                    Image = photoResult.Url.ToString()
+
+                };
+                _bookRepository.Update(book);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(bookVM);
+            }
+        }
+
     }
 }

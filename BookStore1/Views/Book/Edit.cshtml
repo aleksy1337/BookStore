@@ -1,0 +1,46 @@
+﻿@using BookStore1.ViewModels
+@model EditBookViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container bootstrap snippets bootdey">
+    <h1 class="text-primary">Edit Profile</h1>
+    <hr>
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-3">
+            <div class="text-center">
+                <img src="@Model.URL" width="100%" height="225" alt="">
+                
+
+                
+            </div>
+        </div>
+
+        <!-- edit form column -->
+        <form method="post" asp-action="Edit" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control" placeholder="Title">
+                <span asp-validation-for="Title" class="text-danger"> </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author">Author</label>
+                <input asp-for="Author" class="form-control" placeholder="Author">
+                <span asp-validation-for="Author" class="text-danger"> </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price">Price</label>
+                <input asp-for="Price" class="form-control" placeholder="Price">
+                <span asp-validation-for="Price" class="text-danger"> </span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image">Image</label>
+                <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
