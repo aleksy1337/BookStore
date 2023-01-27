@@ -4,6 +4,7 @@ using BookStore1.Interfaces;
 using BookStore1.Models;
 using BookStore1.Repository;
 using BookStore1.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
@@ -35,7 +36,7 @@ namespace BookStore1.Controllers
             return View(book);
 
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -43,6 +44,7 @@ namespace BookStore1.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateBookViewModel bookVM)
         {
             if (ModelState.IsValid)
@@ -67,6 +69,7 @@ namespace BookStore1.Controllers
 
 
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             var book = await _bookRepository.GetByIdAsync(id);
@@ -80,6 +83,7 @@ namespace BookStore1.Controllers
             };
             return View(bookVM);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, EditBookViewModel bookVM)
         {
@@ -118,6 +122,21 @@ namespace BookStore1.Controllers
                 return View(bookVM);
             }
         }
-
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var bookDetails = await _bookRepository.GetByIdAsync(id);
+            if (bookDetails == null) return View("Error");
+            return View(bookDetails);
+        }
+        [Authorize(Roles = "Admin")]
+        [HttpPost, ActionName("DeleteBook")]
+        public async Task<IActionResult> DeleteBook(int id)
+        {
+            var bookDetails = await _bookRepository.GetByIdAsync(id);
+            if (bookDetails == null) return View("Error");
+            _bookRepository.Delete(bookDetails);
+            return RedirectToAction("Index");
+        }
     }
 }
