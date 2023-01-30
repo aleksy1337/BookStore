@@ -6,6 +6,7 @@ using BookStore1.Repository;
 using BookStore1.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -18,10 +19,12 @@ namespace BookStore1.Controllers
 
         private readonly IBookRepository _bookRepository;
         private readonly IPhotoService _photoService;
+        private readonly AppDbContext _context;
         public BookController(AppDbContext context, IBookRepository BookRepository, IPhotoService photoService)
         {
             _bookRepository = BookRepository;
             _photoService = photoService;
+            _context = context;
 
 
         }
@@ -112,7 +115,7 @@ namespace BookStore1.Controllers
                     Author = bookVM.Author,
                     Price = bookVM.Price,
                     Image = photoResult.Url.ToString()
-
+                    
                 };
                 _bookRepository.Update(book);
                 return RedirectToAction("Index");
@@ -137,6 +140,18 @@ namespace BookStore1.Controllers
             if (bookDetails == null) return View("Error");
             _bookRepository.Delete(bookDetails);
             return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Search(string title)
+        {
+            var book = from m in _context.Books
+                       select m;
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                  book = book.Where(x => x.Title!.Contains(title));
+            }
+
+            return View(book.ToList());
         }
     }
 }

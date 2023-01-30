@@ -1,41 +1,33 @@
 ﻿@model Book
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
-<!-- Page Content -->
 <div class="container">
 
-    <!-- Portfolio Item Heading -->
-    <h1 class="my-4">
-        Page Heading
-        <small>Secondary Text</small>
-    </h1>
+    <div class="container">
 
-    <!-- Portfolio Item Row -->
-    <div class="row">
+       
+        <h1 class="my-4">
+            
+            <small>@Model.Title</small>
+        </h1>
 
-        <div class="col-md-8">
-            <img class="img-fluid" src="@Model.Image" alt="">
+   
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-fluid" src="@Model.Image" alt="">
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="my-3">Autor: @Model.Author</h3>
+               
+                <h3 class="my-3">Price: @Model.Price</h3>
+               
+            </div>
+
         </div>
-
-        <div class="col-md-4">
-            <h3 class="my-3">@Model.Title</h3>
-            <p>@Model.Author</p>
-            <h3 class="my-3">Price</h3>
-            <ul>
-                <li>@Model.Price</li>
-            </ul>
-        </div>
+       
 
     </div>
-    <!-- /.row -->
-    <!-- Related Projects Row -->
    
-    <!-- /.row -->
-
 </div>
-<!-- /.container -->
+

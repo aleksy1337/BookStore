@@ -1,29 +1,37 @@
 ﻿@model IEnumerable<Book>
+@using Microsoft.AspNetCore.Identity
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<div class="album py-5 bg-light">
-    <div class="container">
+
+<div class="book">
+    <div class="container-fluid">
+        <form asp-controller="Book" asp-action="Search" method="get">
+            <div class="container">
+                <div class="formtile d-flex">
+                    <label for="Title" class="formlabel">Title</label>
+                    <input id="Title" type="text" class="forminput" name="Title" />
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+
+            </div>
+        </form>
         <div class="row">
             @foreach (var item in Model)
             {
                 <div class="col-md-4">
                     <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src ="@item.Image" width="100%" height="225" alt="Card image cap">
+                        <img class="img-fluid" src="@item.Image" width="100%" height="300" alt="Card image cap">
                         <div class="card-body">
                             <p class="card-text">@item.Title</p>
                             <p class="card-text">@item.Author</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a type="btn btn-succes" asp-controller="book" asp-action="Detail" asp-route-id="@item.ID"
-                                    class="btn btn-sm btn-outline-secondary">View</a>
-                                    <a  asp-controller="book" asp-action="Edit" asp-route-id="@item.ID" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                    <a  asp-controller="book" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                   class="btn btn-sm btn-outline-secondary">View</a>
+                                    <a asp-controller="book" asp-action="Edit" asp-route-id="@item.ID" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    <a asp-controller="book" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                    <a asp-controller="book" class="btn btn-sm btn-outline-secondary">Buy</a>
                                 </div>
-                                <small class="text-muted">@item.Price zł</small>
+                                <small class="text-muted">@item.Price $</small>
                             </div>
                         </div>
                     </div>
@@ -32,7 +40,10 @@
 
         </div>
     </div>
+    <a asp-controller="book" asp-action="Create" class="btn btn-sm btn-outline-secondary">Create new book</a>
 </div>
+
+
 
 
 

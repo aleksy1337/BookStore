@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6+JWntT+1wDKnoDxJL2uSjSDI/J/VGrLAdGMkpAM+ur9MLFZPIKvgOI2nMrwACdz3TtRuGow2z5nKP1GKn5OBA==",
+  "dgSpecHash": "hVGqH67hPjf2VcKUMTqr/Ns6LZunH2HxDMzlv9RHY7lq5XUpiskLkrOtg8DmUCXTfqGGhPDoF5vpFioAyqbcoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Aleksy\\source\\repos\\BookStore\\BookStore\\BookStore1\\BookStore1.csproj",
+  "projectFilePath": "C:\\Users\\Aleksy\\source\\repos\\BookStore\\BookStoreWorking\\BookStore1\\BookStore1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aleksy\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Aleksy\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
